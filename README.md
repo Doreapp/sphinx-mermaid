@@ -5,7 +5,7 @@ Mermaid graph support for sphinx generated documentations
 ## Install
 
 ```bash
-pip install sphinxmermaid
+pip install sphinx-mermaid
 ```
 
 ## Setup in `conf.py`
