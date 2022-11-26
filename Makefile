@@ -2,6 +2,11 @@ PROJECT_NAME=sphinxmermaid
 TEST_DIR=tests
 
 PYTHON=python3
+DOCKER_IMAGE=${PROJECT_NAME}-docker
+DOCKER_RUN=docker run \
+ -u $(shell id -u):$(shell id -g) \
+ -v $(shell pwd)/$(PROJECT_NAME):/work/$(PROJECT_NAME) \
+ -v $(shell pwd)/$(TEST_DIR):/work/$(TEST_DIR)
 
 LINE_LENGTH=100
 
@@ -16,9 +21,23 @@ clean: ## Remove all the generated files
 
 format: ## Run isort and black to format Python code
 	@${PYTHON} -m isort --line-length ${LINE_LENGTH} --profile black . ${PROJECT_NAME} ${TEST_DIR}
-	@${PYTHON} -m black --line-length ${LINE_LENGTH} *.py ${PROJECT_NAME}/* ${TEST_DIR}/*
+	@${PYTHON} -m black --line-length ${LINE_LENGTH} *.py ${PROJECT_NAME}/**.py ${TEST_DIR}/**.py
 
 lint: ## Check Python code with isort, black and pylint to identify any problem
 	${PYTHON} -m isort --line-length ${LINE_LENGTH} --profile black --check . ${PROJECT_NAME} ${TEST_DIR}
-	${PYTHON} -m black --line-length ${LINE_LENGTH} --check *.py ${PROJECT_NAME}/* ${TEST_DIR}/*
+	${PYTHON} -m black --line-length ${LINE_LENGTH} --check *.py ${PROJECT_NAME}/**.py ${TEST_DIR}/**.py
 	${PYTHON} -m pylint ${PROJECT_NAME}/* ${TEST_DIR}/*
+
+build: ## Build docker image
+	docker build -t $(DOCKER_IMAGE) .
+
+docker_%: ## Run `make %` inside docker container
+docker_%: build
+	@echo running `make $(shell echo $@ | cut -d_ -f2-)` in docker container
+	@$(DOCKER_RUN) $(OPTIONS) \
+		-t $(DOCKER_IMAGE) \
+		$(shell echo $@ | cut -d_ -f2-)
+
+_interactive: ## Enter the docker container in interactive mode
+_interactive: build
+	$(DOCKER_RUN) --entrypoint /bin/bash -i $(OPTIONS) -t $(DOCKER_IMAGE)
