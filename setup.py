@@ -4,7 +4,6 @@ from typing import List
 
 from setuptools import find_packages, setup
 
-VERSION_SPECIFIERS = ("==", "~=", ">=", "<=", ">", "<")
 PROJECT_SLUG = "sphinxmermaid"
 VERSION = "0.0.1"
 
