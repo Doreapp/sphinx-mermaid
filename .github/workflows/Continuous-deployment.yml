@@ -1,0 +1,17 @@
+name: Continuous Deployment
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  Deploy package:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Deploy to pypi
+        run: make docker_dist docker_upload_dist
+        env:
+          TWINE_PASSWORD: ${{ secrets.TWINE_ACCESS_TOKEN }}
