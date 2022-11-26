@@ -56,7 +56,7 @@ docker_dist: ## Run `make dist` with docker
 	mkdir -p dist
 	@$(DOCKER_RUN) $(OPTIONS) \
 		-v $(shell pwd)/dist:/work/dist \
-		-t $(DOCKER_IMAGE)
+		-t $(DOCKER_IMAGE) \
 		dist
 
 docker_upload_dist: ## Run `make upload_dist` with docker
@@ -64,7 +64,7 @@ docker_upload_dist: ## Run `make upload_dist` with docker
 	@$(DOCKER_RUN) $(OPTIONS) \
 		-v $(shell pwd)/dist:/work/dist \
 		-e TWINE_PASSWORD \
-		-t $(DOCKER_IMAGE)
+		-t $(DOCKER_IMAGE) \
 		dist
 
 _interactive: ## Enter the docker container in interactive mode
