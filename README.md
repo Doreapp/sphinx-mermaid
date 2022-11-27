@@ -1,6 +1,9 @@
 # Mermaid support for Sphinx documentation
 
-Mermaid graph support for sphinx generated documentations
+[Mermaid graphs](https://mermaid-js.github.io/mermaid/#/) support for [sphinx generated documentations](https://www.sphinx-doc.org/en/master/).
+
+- [GitHub repository at Doreapp/sphinx-mermaid](https://github.com/Doreapp/sphinx-mermaid/)
+- [Pypi package sphinx-mermaid](https://pypi.org/project/sphinx-mermaid/)
 
 ## Install
 
@@ -27,6 +30,6 @@ In your `rst` (or `md`) files, use the directive just like:
 .. mermaid ::
 
     graph TD
-    A --> B : label
-    B --> C
+    A --> B
+    B -- Label --> C
 ```
