@@ -53,6 +53,7 @@ docker_%: build
 		$(shell echo $@ | cut -d_ -f2-)
 
 docker_dist: ## Run `make dist` with docker
+docker_dist: build
 	mkdir -p dist
 	@$(DOCKER_RUN) $(OPTIONS) \
 		-v $(shell pwd)/dist:/work/dist \
@@ -60,6 +61,7 @@ docker_dist: ## Run `make dist` with docker
 		dist
 
 docker_upload_dist: ## Run `make upload_dist` with docker
+docker_upload_dist: build
 	mkdir -p dist
 	@$(DOCKER_RUN) $(OPTIONS) \
 		-v $(shell pwd)/dist:/work/dist \
