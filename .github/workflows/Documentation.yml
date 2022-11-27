@@ -1,0 +1,20 @@
+name: Documentation
+run-name: Documentation
+on: [push]
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Build documentation
+        run: make doc
+      # https://github.com/peaceiris/actions-gh-pages
+      - name: Deploy documentation
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: doc/build/html/
