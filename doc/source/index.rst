@@ -8,6 +8,12 @@ Mermaid in sphinx documentation
 - `Pypi package sphinx-mermaid <https://pypi.org/project/sphinx-mermaid/>`_
 - Example of usage: `GitHub pages of this repo <https://doreapp.github.io/sphinx-mermaid/>`_
 
+.. toctree ::
+   :maxdepth: 1
+
+   examples
+
+
 Quick example
 -------------
 
