@@ -12,7 +12,7 @@ TWINE_USERNAME=__token__
 
 LINE_LENGTH=100
 
-.PHONY: build
+.PHONY: build doc
 
 all: format lint
 
@@ -70,3 +70,6 @@ docker_upload_dist: ## Run `make upload_dist` with docker
 _interactive: ## Enter the docker container in interactive mode
 _interactive: build
 	$(DOCKER_RUN) --entrypoint /bin/bash -i $(OPTIONS) -t $(DOCKER_IMAGE)
+
+doc: ## Build the documentation
+	make -C doc docker_html SPHINXOPTS=$(SPHINXOPTS) O=$(O)
