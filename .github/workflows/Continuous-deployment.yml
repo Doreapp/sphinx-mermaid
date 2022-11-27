@@ -5,7 +5,7 @@ on:
     types: [published]
 
 jobs:
-  Deploy package:
+  Deploy-package:
     runs-on: ubuntu-latest
     name: Deploy
     steps:
