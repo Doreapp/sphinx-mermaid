@@ -4,6 +4,7 @@
 
 - [GitHub repository at Doreapp/sphinx-mermaid](https://github.com/Doreapp/sphinx-mermaid/)
 - [Pypi package sphinx-mermaid](https://pypi.org/project/sphinx-mermaid/)
+- Example of usage: [GitHub pages of this repo](https://doreapp.github.io/sphinx-mermaid/)
 
 ## Install
 

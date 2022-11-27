@@ -5,7 +5,7 @@ from typing import List
 from setuptools import find_packages, setup
 
 PROJECT_SLUG = "sphinxmermaid"
-VERSION = "0.0.2"
+VERSION = "0.1.0"
 
 
 def read_requirements(path: str) -> List[str]:

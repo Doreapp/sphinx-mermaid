@@ -6,7 +6,7 @@ import datetime
 project = "Sphinx mermaid"
 author = "Antoine Mandin"
 copyright = f"{datetime.date.today().strftime('%Y')}, Antoine Mandin"
-release = "0.0.2"
+release = "0.1.0"
 
 extensions = [
     "sphinxmermaid", # Mermaid extension

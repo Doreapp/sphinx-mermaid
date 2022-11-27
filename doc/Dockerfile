@@ -23,6 +23,7 @@ ENV C_FORCE_ROOT=1
 
 # Other project-specific files
 ADD Makefile \
+ build_examples.py \
  /work/
 
 ENTRYPOINT [ "make" ]
