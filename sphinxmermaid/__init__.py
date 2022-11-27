@@ -57,6 +57,7 @@ def html_mermaid(self: "SphinxTranslator", node: "Node"):
     """
     Visit handler for HTML
     """
+    LOGGER.debug("HTML visit mermaid node at %s", node.line)
     append_mermaid_div(self, node["code"])
     raise nodes.SkipNode
 
@@ -65,6 +66,7 @@ def install_js(app: "Sphinx", *_):
     """
     Install the Javascript code needed for mermaid.
     """
+    LOGGER.debug("Installing mermaid JavaScript from %s", MERMAID_JS_URL)
     app.add_js_file(MERMAID_JS_URL, priority=500)
     app.add_js_file(None, body=JS_INIT_MERMAID, priority=501)
 
