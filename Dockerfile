@@ -24,6 +24,7 @@ ENV C_FORCE_ROOT=1
 # Other project-specific files
 ADD Makefile \
  setup.py \
+ README.md \
  /work/
 COPY sphinxmermaid/ /work/sphinxmermaid/
 
