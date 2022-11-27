@@ -12,7 +12,7 @@ TWINE_USERNAME=__token__
 
 LINE_LENGTH=100
 
-.PHONY: build doc
+.PHONY: build doc dist
 
 all: format lint
 
