@@ -1,6 +1,9 @@
 name: Documentation
 run-name: Documentation
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   Deploy:
