@@ -2,7 +2,7 @@
 Main file of the sphinx extension
 """
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 
 import sphinx
 from docutils import nodes
@@ -38,7 +38,7 @@ class Mermaid(SphinxDirective):
             raise self.error("Empty content")
         return code
 
-    def run(self):
+    def run(self) -> List["Node"]:
         """Visit the directrive"""
         node = MermaidNode()
         node["code"] = self.code_content()
