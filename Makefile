@@ -67,7 +67,7 @@ docker_upload_dist: build
 		-v $(shell pwd)/dist:/work/dist \
 		-e TWINE_PASSWORD \
 		-t $(DOCKER_IMAGE) \
-		dist
+		upload_dist
 
 _interactive: ## Enter the docker container in interactive mode
 _interactive: build
