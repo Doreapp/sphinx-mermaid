@@ -8,6 +8,8 @@ SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
 
+DOCKER_IMAGE=sphinx
+
 # Put it first so that "make" without argument is like "make help".
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
@@ -18,3 +20,12 @@ help:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+docker_html:
+	docker build -t $(DOCKER_IMAGE) .
+	docker run --rm \
+		-u $(shell id -u):$(shell id -g) \
+		-v $(shell pwd)/$(SOURCEDIR):/work/$(SOURCEDIR) \
+		-v $(shell pwd)/$(BUILDDIR):/work/$(BUILDDIR) \
+		-t $(DOCKER_IMAGE) \
+		html
