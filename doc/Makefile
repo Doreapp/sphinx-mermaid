@@ -22,6 +22,7 @@ help:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 docker_html:
+	mkdir -p build build/html build/doctrees
 	docker build -t $(DOCKER_IMAGE) .
 	docker run --rm \
 		-u $(shell id -u):$(shell id -g) \
