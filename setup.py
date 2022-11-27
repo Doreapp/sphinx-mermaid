@@ -5,7 +5,7 @@ from typing import List
 from setuptools import find_packages, setup
 
 PROJECT_SLUG = "sphinxmermaid"
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 
 
 def read_requirements(path: str) -> List[str]:
@@ -50,6 +50,7 @@ setup(
     install_requires=requirements,
     license="MIT license",
     long_description=readme,
+    long_description_content_type="text/markdown",
     include_package_data=True,
     keywords=[PROJECT_SLUG, "mermaid", "rst", "reStructuredText", "sphinx"],
     name="sphinx-mermaid",
