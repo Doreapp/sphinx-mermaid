@@ -1,11 +1,12 @@
 """The setup script."""
 
+import os
 from typing import List
 
 from setuptools import find_packages, setup
 
 PROJECT_SLUG = "sphinxmermaid"
-VERSION = "0.1.0"
+VERSION = os.environ["VERSION"]
 
 
 def read_requirements(path: str) -> List[str]:
