@@ -1,13 +1,14 @@
 name: Continuous Deployment
 
 on:
-  release:
-    types: [published]
+ push:
+  tags:
+   - '*'
 
 jobs:
   Deploy-package:
     runs-on: ubuntu-latest
-    name: Deploy
+    name: Deploy package
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -15,3 +16,4 @@ jobs:
         run: make docker_dist docker_upload_dist
         env:
           TWINE_PASSWORD: ${{ secrets.TWINE_ACCESS_TOKEN }}
+          VERSION: ${{ github.ref_name }}

@@ -34,13 +34,19 @@ lint: ## Check Python code with isort, black and pylint to identify any problem
 	${PYTHON} -m pylint ${PROJECT_NAME}/* ${TEST_DIR}/*
 
 dist: ## Build wheel for the package
+ifndef VERSION
+	$(error VERSION variable missing. It defines the package version name.)
+endif
+	@echo Creating wheel for $(PROJECT_NAME):$(VERSION)
 	$(PYTHON) setup.py bdist_wheel --universal
 
 upload_dist: ## Upload package to pypi
 ifndef TWINE_PASSWORD
 	$(error TWINE_PASSWORD must be defined)
 endif
-	$(PYTHON) -m twine upload dist/*
+	$(PYTHON) -m twine upload dist/* \
+		-u $(TWINE_USERNAME) \
+		-p $(TWINE_PASSWORD)
 
 build: ## Build docker image
 	docker build -t $(DOCKER_IMAGE) .
@@ -57,6 +63,7 @@ docker_dist: build
 	mkdir -p dist
 	@$(DOCKER_RUN) $(OPTIONS) \
 		-v $(shell pwd)/dist:/work/dist \
+		-e VERSION \
 		-t $(DOCKER_IMAGE) \
 		dist
 
