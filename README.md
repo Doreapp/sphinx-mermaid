@@ -27,7 +27,8 @@ extensions = [
 
 ``mermaid_init``
 
-Set to a dictionary of values to pass to `mermaid.initialize()`.
+Set to a dictionary of values to pass to `mermaid.initialize()`. Find more info
+at [MermaidJS](https://mermaid.js.org/intro/n00b-syntaxReference.html)
 
 Example:
 
