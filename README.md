@@ -25,8 +25,11 @@ extensions = [
 
 ### Config Options
 
-mermaid_init
-: Set to a dictionary of values to pass to `mermaid.initialize()`.
+``mermaid_init``
+
+Set to a dictionary of values to pass to `mermaid.initialize()`.
+
+Example:
 
 ```python
 mermaid_init = {
