@@ -2,6 +2,7 @@
 Main file of the sphinx extension
 """
 
+import json
 from typing import TYPE_CHECKING, List
 
 import sphinx
@@ -68,13 +69,29 @@ def install_js(app: "Sphinx", *_):
     """
     LOGGER.debug("Installing mermaid JavaScript from %s", MERMAID_JS_URL)
     app.add_js_file(MERMAID_JS_URL, priority=500)
-    app.add_js_file(None, body=JS_INIT_MERMAID, priority=501)
+
+    mermaid_init = create_mermaid_init(app)
+    app.add_js_file(None, body=mermaid_init, priority=501)
+
+
+def create_mermaid_init(app):
+    """
+    Returns the `mermaid.initialize({...})` code string from the value
+    specified in conf.py or the default value.
+    """
+
+    if app.config.mermaid_init:
+        params = json.dumps(app.config.mermaid_init)
+        return f"mermaid.initialize({params})"
+
+    return JS_INIT_MERMAID
 
 
 def setup(app: "Sphinx"):
     """
     Setup the extension
     """
+    app.add_config_value("mermaid_init", None, "html")
     app.add_node(MermaidNode, html=(html_mermaid, None))
     app.add_directive("mermaid", Mermaid)
     app.connect("html-page-context", install_js)

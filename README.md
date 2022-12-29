@@ -23,6 +23,25 @@ extensions = [
 ]
 ```
 
+### Config Options
+
+mermaid_init
+: Set to a dictionary of values to pass to `mermaid.initialize()`.
+
+```python
+mermaid_init = {
+  'theme': 'base',
+  'themeOptions': {
+    'primaryColor': '#BB2528',
+    'primaryTextColor': '#fff',
+    'primaryBorderColor': '#7C0000',
+    'lineColor': '#F8B229',
+    'secondaryColor': '#006100',
+    'tertiaryColor': '#fff'
+  }
+}
+```
+
 ## Usage
 
 In your `rst` (or `md`) files, use the directive just like:
