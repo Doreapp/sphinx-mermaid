@@ -34,7 +34,7 @@ Example:
 ```python
 mermaid_init = {
   'theme': 'base',
-  'themeOptions': {
+  'themeVariables': {
     'primaryColor': '#BB2528',
     'primaryTextColor': '#fff',
     'primaryBorderColor': '#7C0000',
