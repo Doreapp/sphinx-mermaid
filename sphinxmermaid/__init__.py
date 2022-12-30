@@ -74,7 +74,7 @@ def install_js(app: "Sphinx", *_):
     app.add_js_file(None, body=mermaid_init, priority=501)
 
 
-def create_mermaid_init(app):
+def create_mermaid_init(app: "Sphinx"):
     """
     Returns the `mermaid.initialize({...})` code string from the value
     specified in conf.py or the default value.
