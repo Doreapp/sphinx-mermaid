@@ -25,17 +25,17 @@ extensions = [
 
 ### Config Options
 
-``sphinxmermaid_mermaid_init``
+`sphinxmermaid_mermaid_init` can be set as a dictionary of values.
 
-Set to a dictionary of values to pass to `mermaid.initialize()`. Find more info
-at [MermaidJS](https://mermaid.js.org/intro/n00b-syntaxReference.html)
+These will be passed to `mermaid.initialize()`. Find more info at
+[MermaidJS](https://mermaid.js.org/intro/n00b-syntaxReference.html)
 
 Example:
 
 ```python
 sphinxmermaid_mermaid_init = {
   'theme': 'base',
-  'themeOptions': {
+  'themeVariables': {
     'primaryColor': '#BB2528',
     'primaryTextColor': '#fff',
     'primaryBorderColor': '#7C0000',
