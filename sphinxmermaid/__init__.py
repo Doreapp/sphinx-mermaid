@@ -69,9 +69,7 @@ def install_js(app: "Sphinx", *_):
     """
     LOGGER.debug("Installing mermaid JavaScript from %s", MERMAID_JS_URL)
     app.add_js_file(MERMAID_JS_URL, priority=500)
-
-    mermaid_init = create_mermaid_init(app)
-    app.add_js_file(None, body=mermaid_init, priority=501)
+    app.add_js_file(None, body=create_mermaid_init(app), priority=501)
 
 
 def create_mermaid_init(app: "Sphinx"):
@@ -79,15 +77,11 @@ def create_mermaid_init(app: "Sphinx"):
     Returns the `mermaid.initialize({...})` code string from the value
     specified in conf.py or the default value.
     """
-
     mermaid_init = app.config.mermaid_init
-
     if mermaid_init:
         check_mermaid_init(mermaid_init)
-
         params = json.dumps(mermaid_init)
         return f"mermaid.initialize({params})"
-
     return DEFAULT_MERMAID_INIT
 
 
@@ -95,7 +89,6 @@ def check_mermaid_init(mermaid_init):
     """
     Checks whether `mermaid_init` is valid. If not, raises an error.
     """
-
     if not isinstance(mermaid_init, dict):
         raise TypeError("mermaid_init must be a dict.")
 
