@@ -25,9 +25,8 @@ extensions = [
 
 ### Config Options
 
-``mermaid_init``
-
-Set to a dictionary of values to pass to `mermaid.initialize()`. Find more info
+`mermaid_init` can be set as a dictionary of values. 
+These will be passed to `mermaid.initialize()`. Find more info
 at [MermaidJS](https://mermaid.js.org/intro/n00b-syntaxReference.html)
 
 Example:
