@@ -13,7 +13,7 @@ from sphinx.util.docutils import SphinxDirective
 
 LOGGER = logging.getLogger(__name__)
 MERMAID_JS_URL = "https://unpkg.com/mermaid/dist/mermaid.min.js"
-DEFAULT_MERMAID_INIT = "mermaid.initialize({startOnLoad:true});"
+DEFAULT_MERMAID_INIT = {"startOnLoad": True}
 
 if TYPE_CHECKING:
     from docutils.nodes import Node
@@ -77,12 +77,13 @@ def create_mermaid_init(app: "Sphinx"):
     Returns the `mermaid.initialize({...})` code string from the value
     specified in conf.py or the default value.
     """
-    mermaid_init = app.config.mermaid_init
-    if mermaid_init:
+    if app.config.mermaid_init is not None:
+        mermaid_init = app.config.mermaid_init
         check_mermaid_init(mermaid_init)
-        params = json.dumps(mermaid_init)
-        return f"mermaid.initialize({params})"
-    return DEFAULT_MERMAID_INIT
+    else:
+        mermaid_init = DEFAULT_MERMAID_INIT
+    params = json.dumps(mermaid_init)
+    return f"mermaid.initialize({params})"
 
 
 def check_mermaid_init(mermaid_init):
