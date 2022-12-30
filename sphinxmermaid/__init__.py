@@ -91,7 +91,7 @@ def check_mermaid_init(mermaid_init):
     Checks whether `mermaid_init` is valid. If not, raises an error.
     """
     if not isinstance(mermaid_init, dict):
-        raise TypeError("mermaid_init must be a dict.")
+        raise TypeError("'sphinxmermaid_mermaid_init' must be a dict.")
 
 
 def setup(app: "Sphinx"):
