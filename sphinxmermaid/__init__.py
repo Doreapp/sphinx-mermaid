@@ -77,8 +77,8 @@ def create_mermaid_init(app: "Sphinx"):
     Returns the `mermaid.initialize({...})` code string from the value
     specified in conf.py or the default value.
     """
-    if app.config.mermaid_init is not None:
-        mermaid_init = app.config.mermaid_init
+    if app.config.sphinxmermaid_mermaid_init is not None:
+        mermaid_init = app.config.sphinxmermaid_mermaid_init
         check_mermaid_init(mermaid_init)
     else:
         mermaid_init = DEFAULT_MERMAID_INIT
@@ -98,7 +98,7 @@ def setup(app: "Sphinx"):
     """
     Setup the extension
     """
-    app.add_config_value("mermaid_init", None, "html")
+    app.add_config_value("sphinxmermaid_mermaid_init", None, "html")
     app.add_node(MermaidNode, html=(html_mermaid, None))
     app.add_directive("mermaid", Mermaid)
     app.connect("html-page-context", install_js)

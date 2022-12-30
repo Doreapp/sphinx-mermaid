@@ -25,7 +25,7 @@ extensions = [
 
 ### Config Options
 
-``mermaid_init``
+``sphinxmermaid_mermaid_init``
 
 Set to a dictionary of values to pass to `mermaid.initialize()`. Find more info
 at [MermaidJS](https://mermaid.js.org/intro/n00b-syntaxReference.html)
@@ -33,7 +33,7 @@ at [MermaidJS](https://mermaid.js.org/intro/n00b-syntaxReference.html)
 Example:
 
 ```python
-mermaid_init = {
+sphinxmermaid_mermaid_init = {
   'theme': 'base',
   'themeOptions': {
     'primaryColor': '#BB2528',
