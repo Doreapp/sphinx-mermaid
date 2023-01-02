@@ -2,6 +2,7 @@
 Main file of the sphinx extension
 """
 
+import json
 from typing import TYPE_CHECKING, List
 
 import sphinx
@@ -12,7 +13,7 @@ from sphinx.util.docutils import SphinxDirective
 
 LOGGER = logging.getLogger(__name__)
 MERMAID_JS_URL = "https://unpkg.com/mermaid/dist/mermaid.min.js"
-JS_INIT_MERMAID = "mermaid.initialize({startOnLoad:true});"
+DEFAULT_MERMAID_INIT = {"startOnLoad": True}
 
 if TYPE_CHECKING:
     from docutils.nodes import Node
@@ -68,13 +69,36 @@ def install_js(app: "Sphinx", *_):
     """
     LOGGER.debug("Installing mermaid JavaScript from %s", MERMAID_JS_URL)
     app.add_js_file(MERMAID_JS_URL, priority=500)
-    app.add_js_file(None, body=JS_INIT_MERMAID, priority=501)
+    app.add_js_file(None, body=create_mermaid_init(app), priority=501)
+
+
+def create_mermaid_init(app: "Sphinx"):
+    """
+    Returns the `mermaid.initialize({...})` code string from the value
+    specified in conf.py or the default value.
+    """
+    if app.config.sphinxmermaid_mermaid_init is not None:
+        mermaid_init = app.config.sphinxmermaid_mermaid_init
+        check_mermaid_init(mermaid_init)
+    else:
+        mermaid_init = DEFAULT_MERMAID_INIT
+    params = json.dumps(mermaid_init)
+    return f"mermaid.initialize({params})"
+
+
+def check_mermaid_init(mermaid_init):
+    """
+    Checks whether `mermaid_init` is valid. If not, raises an error.
+    """
+    if not isinstance(mermaid_init, dict):
+        raise TypeError("'sphinxmermaid_mermaid_init' must be a dict.")
 
 
 def setup(app: "Sphinx"):
     """
     Setup the extension
     """
+    app.add_config_value("sphinxmermaid_mermaid_init", None, "html")
     app.add_node(MermaidNode, html=(html_mermaid, None))
     app.add_directive("mermaid", Mermaid)
     app.connect("html-page-context", install_js)

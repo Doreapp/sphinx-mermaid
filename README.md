@@ -23,6 +23,29 @@ extensions = [
 ]
 ```
 
+### Config Options
+
+`sphinxmermaid_mermaid_init` can be set as a dictionary of values.
+
+These will be passed to `mermaid.initialize()`. Find more info at
+[MermaidJS](https://mermaid.js.org/intro/n00b-syntaxReference.html)
+
+Example:
+
+```python
+sphinxmermaid_mermaid_init = {
+  'theme': 'base',
+  'themeVariables': {
+    'primaryColor': '#BB2528',
+    'primaryTextColor': '#fff',
+    'primaryBorderColor': '#7C0000',
+    'lineColor': '#F8B229',
+    'secondaryColor': '#006100',
+    'tertiaryColor': '#fff'
+  }
+}
+```
+
 ## Usage
 
 In your `rst` (or `md`) files, use the directive just like:
